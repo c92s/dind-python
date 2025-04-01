@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: "daily"
+    time: "21:00"
+  commit-message:
+    prefix: "chore"
+  reviewers:
+    - "c92s"
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: "daily"
+    time: "21:00"
+  commit-message:
+    prefix: "chore"
+  reviewers:
+    - "c92s"
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: "daily"
+    time: "21:00"
+  commit-message:
+    prefix: "chore"
+  reviewers:
+    - "c92s"

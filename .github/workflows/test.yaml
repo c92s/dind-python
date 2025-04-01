@@ -1,0 +1,43 @@
+name: Build and Test Image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+
+jobs:
+  build-and-test-image:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check Commit Message
+      if: github.event_name == 'pull_request'
+      uses: opensource-nepal/commitlint@v1.3.0
+
+    - name: Lint Dockerfile
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: dockerfile
+
+    - name: Lint Python Code
+      uses: astral-sh/ruff-action@v3.2.2
+      with:
+        src: "./tests"
+
+    - name: Lint Workflow Files
+      uses: raven-actions/actionlint@v2.0.0
+      with:
+        files: ".github/**/*.{yml,yaml}"
+
+    - name: Build
+      uses: docker/build-push-action@v6.15.0
+      with:
+        load: true
+
+    - name: Test Image
+      run: |
+        python -m pip install --quiet -r tests/requirements.txt 
+        python -m pytest
