@@ -33,7 +33,7 @@ jobs:
         files: ".github/**/*.{yml,yaml}"
 
     - name: Build
-      uses: docker/build-push-action@v6.16.0
+      uses: docker/build-push-action@v6.17.0
       with:
         load: true
 
