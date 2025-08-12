@@ -23,7 +23,7 @@ jobs:
         dockerfile: dockerfile
 
     - name: Lint Python Code
-      uses: astral-sh/ruff-action@v3.5.0
+      uses: astral-sh/ruff-action@v3.5.1
       with:
         src: "./tests"
 
