@@ -28,7 +28,7 @@ jobs:
         src: "./tests"
 
     - name: Lint Workflow Files
-      uses: raven-actions/actionlint@v2.0.1
+      uses: raven-actions/actionlint@v2.1.0
       with:
         files: ".github/**/*.{yml,yaml}"
 
